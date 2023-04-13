@@ -5,7 +5,9 @@
 
 @model List<ProductViewModel>
 
-<h1>Ürünler</h1>
+<h1 style="text-align:center">ÜRÜNLER</h1>
+
+
 
 @if (TempData["Uyarı"] != null)
 {
@@ -18,12 +20,12 @@
 
           <th>Id</th>
           <th>İsim</th>
-          <th>Fiyatı</th>
+          <th>Fiyatı(TL)</th>
           <th>Stok</th>
           <th>Renk</th>
           <th>Ürün Açıklaması</th>
           <th>İşlem </th>
-            <td> <a asp-controller="Products" asp-action="Add">Ürün Ekle</a></td>
+            <td> <a class="btn btn-outline-primary" asp-controller="Products" asp-action="Add">Ürün Ekle</a></td>
           
         </tr>
       </thead>
@@ -52,11 +54,19 @@
       
       <a asp-controller="Products" asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
       <a asp-controller="Products" asp-action="Remove" asp-route-id="@item.Id">Sil</a>
+      <a asp-controller="Products" asp-action="GetById" asp-route-productid="@item.Id">Ürün Sayfası</a>
     </td>
 
     </tr>
 }
     </tbody>
 
+    <a asp-controller="Products" asp-action="pages" asp-route-page="1" asp-route-pageSize="3">Listede İlk 3 ürün</a>
+    <br />
+    <a asp-controller="Products" asp-action="pages" asp-route-page="2" asp-route-pageSize="3">Listede İkinci 3 ürün</a>
+    <br />
+    <a asp-controller="Products" asp-action="pages" asp-route-page="3" asp-route-pageSize="3">Listede Üçüncü 3 ürün</a>
 
     </table>
+
+    

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Visitor";
+}
+
+@model List<VisitorViewModel>
+
+<vc:visitor> </vc:visitor>
+
+@*<form asp-controller="Home" asp-action="SaveVisitor" method="post">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Yorum Sahibi</th>
+                <th>Yorumu</th>
+                <th>Yorum Oluşturulma Tarihi</th>
+            </tr>
+        </thead>
+
+        <tbody> 
+            @foreach(var item in Model)
+
+            {
+            <td>@item.Name</td>
+            <td>@item.Comment</td>
+            <td>@item.Created</td>
+
+            }
+        </tbody>
+        
+
+    </table>
+
+
+</form>*@

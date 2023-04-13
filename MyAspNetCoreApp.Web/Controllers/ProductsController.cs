@@ -25,6 +25,26 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
 
+        public IActionResult pages(int page, int pagesize)
+        {
+            var products = _context.Products.Skip((page - 1) * pagesize).Take(pagesize).ToList();
+
+            //ViewBag.page = page;
+            //ViewBag.pagesize = pagesize;
+
+            return View(_mapper.Map<List<ProductViewModel>>(products));
+        }
+      
+
+        public IActionResult GetById(int productid)
+        {
+
+            var product = _context.Products.Find(productid);
+            return View(_mapper.Map<ProductViewModel>(product));
+
+        }
+
+
         public IActionResult Remove(int id)
         {
 

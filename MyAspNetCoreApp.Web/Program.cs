@@ -32,6 +32,16 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "productpages",
+    pattern: "{controller}/{action}/{page}/{pagesize}");
+
+
+app.MapControllerRoute(
+    name: "getbyid",
+    pattern: "{controller}/{action}/{productid?}");
+
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
