@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyAspNetCoreApp.Web.Models;
 using MyAspNetCoreApp.Web.ViewModels;
+using System.Xml.Serialization;
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
@@ -20,11 +21,12 @@ namespace MyAspNetCoreApp.Web.Controllers
         public IActionResult Index()
         {
 
-           var products= _context.Products.ToList();
+            var products = _context.Products.ToList();
 
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
 
+        [Route("[controller]/[action]/{page}/{pageSize}")]
         public IActionResult pages(int page, int pagesize)
         {
             var products = _context.Products.Skip((page - 1) * pagesize).Take(pagesize).ToList();
@@ -34,8 +36,8 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
-      
 
+        [Route("sekme/urunler/{productid}", Name ="urunler" )]
         public IActionResult GetById(int productid)
         {
 
@@ -72,8 +74,6 @@ namespace MyAspNetCoreApp.Web.Controllers
                 return RedirectToAction("Index");
      
         }
-
-
 
         [HttpGet]
         public IActionResult Update(int id)
