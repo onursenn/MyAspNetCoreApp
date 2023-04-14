@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using MyAspNetCoreApp.Web.Models;
 using MyAspNetCoreApp.Web.ViewModels;
 using System.Xml.Serialization;
+using System.Diagnostics;
+
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
+    [Route("[controller]/[action]")]
     public class ProductsController : Controller
     {
         private AppDbContext _context;
@@ -18,6 +21,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             _mapper = mapper;
         }
 
+       
         public IActionResult Index()
         {
 
@@ -46,7 +50,7 @@ namespace MyAspNetCoreApp.Web.Controllers
 
         }
 
-
+        [HttpGet("{id}")]
         public IActionResult Remove(int id)
         {
 
@@ -75,7 +79,7 @@ namespace MyAspNetCoreApp.Web.Controllers
      
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Update(int id)
         {
             var product = _context.Products.Find(id);

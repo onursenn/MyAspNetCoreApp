@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyAspNetCoreApp.Web.Filters;
 using MyAspNetCoreApp.Web.Models;
 using MyAspNetCoreApp.Web.ViewModels;
 using System.Diagnostics;
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
+    [LogFilter]
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,6 +24,9 @@ namespace MyAspNetCoreApp.Web.Controllers
             _mapper = mapper;
         }
 
+        [Route("/")]
+        [Route("/Home")]
+        [Route("/Home/Index")]
         public IActionResult Index()
         {
             var products = _context.Products.OrderByDescending(x => x.Id).Select(x => new ProductPartialViewModel()
