@@ -4,7 +4,7 @@ using MyAspNetCoreApp.Web.Models;
 using MyAspNetCoreApp.Web.ViewModels;
 using System.Xml.Serialization;
 using System.Diagnostics;
-
+using MyAspNetCoreApp.Web.Filters;
 
 namespace MyAspNetCoreApp.Web.Controllers
 {
@@ -40,7 +40,7 @@ namespace MyAspNetCoreApp.Web.Controllers
 
             return View(_mapper.Map<List<ProductViewModel>>(products));
         }
-
+        [ServiceFilter(typeof(NotFoundFilter))]
         [Route("sekme/urunler/{productid}", Name ="urunler" )]
         public IActionResult GetById(int productid)
         {
@@ -50,10 +50,10 @@ namespace MyAspNetCoreApp.Web.Controllers
 
         }
 
+        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpGet("{id}")]
         public IActionResult Remove(int id)
         {
-
             var sil= _context.Products.Find(id);
             _context.Products.Remove(sil);
             _context.SaveChanges();
@@ -79,6 +79,7 @@ namespace MyAspNetCoreApp.Web.Controllers
      
         }
 
+        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpGet("{id}")]
         public IActionResult Update(int id)
         {
@@ -87,6 +88,7 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View(product);
 
         }
+
         [HttpPost]
         public IActionResult ProductUpdate(Product updateProduct)
         {
